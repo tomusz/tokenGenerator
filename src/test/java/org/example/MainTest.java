@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.mockito.Mockito.mock;
 
-//@RunWith(JUnitParamsRunner.class)
 public class MainTest {
 
     private final int LONGEST_INT = 15;
@@ -17,20 +19,16 @@ public class MainTest {
     private final int FORBIDDEN_INT = 1;
     Scanner scanner = mock(Scanner.class);
 
-    //TODO:not working yet
-//    @Test
-//    @Parameters({
-//            "33,!",
-//            "35,#",
-//            "40,/",
-//            "64,@",
-//            "97,a",
-//            "94,^"
-//    })
-//    public void correctCharactersAreReturned(int charNumber, String expectedSign) {
-//        String actualChar = Main.asciToStringConverter(charNumber);
-//        Assert.assertEquals("Strings should match", actualChar, expectedSign);
-//    }
+    @Test
+    public void areCorrectCharactersAreReturnedParametrised() {
+        List<ASCITokenRepresentation> asciTokenRepresentationList =
+                new ArrayList<>(EnumSet.allOf(ASCITokenRepresentation.class));
+
+        for (ASCITokenRepresentation asciTokenRepresentation : asciTokenRepresentationList) {
+            areCorrectCharactersAreReturned(asciTokenRepresentation.getCharNumber(),
+                    asciTokenRepresentation.getSign());
+        }
+    }
 
     @Test
     public void areCorrectCharactersAreReturned() {

@@ -6,15 +6,14 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static org.example.ASCITokenRepresentation.*;
+
 public class Main {
 
     static Logger logger = Logger.getLogger(Main.class.getName());
     static int[] possibleTokenLength = {5, 15};
 
     public static void main(String[] args) {
-
-        // TODO: mock for scanner
-        // TODO: test for 5, 10 and 15
 
         Scanner scanner = new Scanner(System.in);
 
@@ -49,13 +48,17 @@ public class Main {
     private static String getRandomTokenElement() {
         Random random = new Random();
         return switch (random.nextInt(6)) {
-            case 0 -> asciToStringConverter(33); // !
-            case 1 -> asciToStringConverter(randomNumberInRange(35, 38)); // #$%&
-            case 2 -> asciToStringConverter(randomNumberInRange(40, 42)); // ()*
-            case 3 -> asciToStringConverter(randomNumberInRange(64, 90)); // @A -Z
-            case 4 -> asciToStringConverter(randomNumberInRange(97, 122)); // a- z
-            case 5 -> asciToStringConverter(47); // /
-            default -> asciToStringConverter(94); //^
+            case 0 -> asciToStringConverter(EXCLAMATION_MARK.getCharNumber()); // !
+            case 1 -> asciToStringConverter(randomNumberInRange(HASHTAG_MARK.getCharNumber(),
+                    AMPERSAND_MARK.getCharNumber())); // #$%&
+            case 2 -> asciToStringConverter(randomNumberInRange(OPEN_PARENTHESIS_MARK.getCharNumber(),
+                    ASTRIX_MARK.getCharNumber())); // ()*
+            case 3 -> asciToStringConverter(randomNumberInRange(EMAIL_MARK.getCharNumber(),
+                    UPPER_Z_MARK.getCharNumber())); // @A -Z
+            case 4 -> asciToStringConverter(randomNumberInRange(LOWER_A_MARK.getCharNumber(),
+                    LOWER_Z_MARK.getCharNumber())); // a- z
+            case 5 -> asciToStringConverter(SLASH_MARK.getCharNumber()); // /
+            default -> asciToStringConverter(CIRCUMFLEX_MARK.getCharNumber()); //^
         };
     }
 
