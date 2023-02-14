@@ -1,16 +1,14 @@
 package org.example;
 
-import junitparams.JUnitParamsRunner;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import java.util.Scanner;
 
 import static org.mockito.Mockito.mock;
 
-@RunWith(JUnitParamsRunner.class)
+//@RunWith(JUnitParamsRunner.class)
 public class MainTest {
 
     private final int LONGEST_INT = 15;
@@ -35,10 +33,22 @@ public class MainTest {
 //    }
 
     @Test
+    public void areCorrectCharactersAreReturned() {
+        areCorrectCharactersAreReturned(33, "!");
+        areCorrectCharactersAreReturned(35, "#");
+        areCorrectCharactersAreReturned(40, "(");
+        areCorrectCharactersAreReturned(64, "@");
+        areCorrectCharactersAreReturned(97, "a");
+        areCorrectCharactersAreReturned(94, "^");
+        areCorrectCharactersAreReturned(47, "/");
+    }
+
+
+    @Test
     public void testForLongest() {
         Mockito.when(scanner.nextInt()).thenReturn(LONGEST_INT);
         int tokenLength = Main.generateToken(scanner).length();
-        Assert.assertEquals("Strings length should match", tokenLength, LONGEST_INT);
+        Assertions.assertEquals(tokenLength, LONGEST_INT, "Strings length should match");
     }
 
 
@@ -46,20 +56,26 @@ public class MainTest {
     public void testForMedium() {
         Mockito.when(scanner.nextInt()).thenReturn(MEDIUM_AND_DEFAULT_INT);
         int tokenLength = Main.generateToken(scanner).length();
-        Assert.assertEquals("Strings length should match", tokenLength, MEDIUM_AND_DEFAULT_INT);
+        Assertions.assertEquals(tokenLength, MEDIUM_AND_DEFAULT_INT, "Strings length should match");
     }
 
     @Test
     public void testExpectDefaultValue() {
         Mockito.when(scanner.nextInt()).thenReturn(FORBIDDEN_INT);
         int tokenLength = Main.generateToken(scanner).length();
-        Assert.assertEquals("Strings length should match", tokenLength, MEDIUM_AND_DEFAULT_INT);
+        Assertions.assertEquals(tokenLength, MEDIUM_AND_DEFAULT_INT, "Strings length should match");
     }
 
     @Test
     public void testForShort() {
         Mockito.when(scanner.nextInt()).thenReturn(SHORTEST_INT);
         int tokenLength = Main.generateToken(scanner).length();
-        Assert.assertEquals("Strings length should match", tokenLength, SHORTEST_INT);
+        Assertions.assertEquals(tokenLength, SHORTEST_INT, "Strings length should match");
+    }
+
+    private void areCorrectCharactersAreReturned(int charNumber, String expectedSign) {
+        String actualChar = Main.asciToStringConverter(charNumber);
+        Assertions.assertEquals(actualChar, expectedSign,
+                String.format("Strings should match %s for number %d", expectedSign, charNumber));
     }
 }

@@ -51,9 +51,10 @@ public class Main {
         return switch (random.nextInt(6)) {
             case 0 -> asciToStringConverter(33); // !
             case 1 -> asciToStringConverter(randomNumberInRange(35, 38)); // #$%&
-            case 2 -> asciToStringConverter(randomNumberInRange(40, 42)); // /()*
+            case 2 -> asciToStringConverter(randomNumberInRange(40, 42)); // ()*
             case 3 -> asciToStringConverter(randomNumberInRange(64, 90)); // @A -Z
             case 4 -> asciToStringConverter(randomNumberInRange(97, 122)); // a- z
+            case 5 -> asciToStringConverter(47); // /
             default -> asciToStringConverter(94); //^
         };
     }
