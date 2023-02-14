@@ -21,31 +21,29 @@ public class Main {
         logger.log(Level.INFO, "Please provide expected amount of characters for the token.");
         logger.log(Level.INFO, "You can chose 5, 10 or 15 characters. Type 5 for 5 etc.");
         logger.log(Level.INFO, "Providing other range will result in returning default 10 character token");
-
-//        scanner.nextInt();
-        int userInput = 10;
-        try {
-            int parsedInt = Integer.parseInt(String.valueOf(userInput));
-
-            logger.log(Level.INFO,String.format("Token is %s",generateToken(
-                    Arrays.stream(Arrays.stream(possibleTokenLength).toArray())
-                    .anyMatch(x -> x == parsedInt) ? parsedInt : 10)));
-
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        logger.log(Level.INFO, String.format("Token is %s", generateToken(scanner)));
 
     }
 
-    private static String generateToken(int length) {
-        String token = "";
-        for (int i=0; i<length; i++) {
-            token += getRandomTokenElement();
+    public static String generateToken(Scanner scanner) {
+        int parsedInt = 10;
+        try {
+            parsedInt = Integer.parseInt(String.valueOf(scanner.nextInt()));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return token;
+        int finalParsedInt = parsedInt;
+        return generateToken(
+                Arrays.stream(Arrays.stream(possibleTokenLength).toArray())
+                        .anyMatch(x -> x == finalParsedInt) ? parsedInt : 10);
+    }
+
+    private static String generateToken(int length) {
+        StringBuilder token = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            token.append(getRandomTokenElement());
+        }
+        return token.toString();
     }
 
     private static String getRandomTokenElement() {
@@ -60,9 +58,10 @@ public class Main {
         };
     }
 
-    private static String asciToStringConverter(int asciNumber) {
+    protected static String asciToStringConverter(int asciNumber) {
         return String.valueOf((char) asciNumber);
     }
+
     private static int randomNumberInRange(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min) + min;
