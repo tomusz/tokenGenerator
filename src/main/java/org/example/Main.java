@@ -25,7 +25,7 @@ public class Main {
     }
 
     public static String generateToken(Scanner scanner) {
-        int parsedInt = 10;
+        int parsedInt = TokenLength.MEDIUM.getLength();
         try {
             parsedInt = Integer.parseInt(String.valueOf(scanner.nextInt()));
         } catch (Exception e) {
@@ -34,7 +34,8 @@ public class Main {
         int finalParsedInt = parsedInt;
         return generateToken(
                 Arrays.stream(Arrays.stream(possibleTokenLength).toArray())
-                        .anyMatch(x -> x == finalParsedInt) ? parsedInt : 10);
+                        .anyMatch(x -> x == finalParsedInt) ?
+                        parsedInt : TokenLength.MEDIUM.getLength());
     }
 
     private static String generateToken(int length) {

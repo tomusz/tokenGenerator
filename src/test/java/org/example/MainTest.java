@@ -13,9 +13,9 @@ import static org.mockito.Mockito.mock;
 
 public class MainTest {
 
-    private final int LONGEST_INT = 15;
-    private final int MEDIUM_AND_DEFAULT_INT = 10;
-    private final int SHORTEST_INT = 15;
+    private final int LONGEST_INT = TokenLength.LONG.getLength();
+    private final int MEDIUM_AND_DEFAULT_INT = TokenLength.MEDIUM.getLength();
+    private final int SHORTEST_INT = TokenLength.SHORT.getLength();
     private final int FORBIDDEN_INT = 1;
     Scanner scanner = mock(Scanner.class);
 
