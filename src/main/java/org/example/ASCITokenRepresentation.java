@@ -1,15 +1,6 @@
 package org.example;
 
 public enum ASCITokenRepresentation {
-
-//    case 0 -> asciToStringConverter(33); // !
-//            case 1 -> asciToStringConverter(randomNumberInRange(35, 38)); // #$%&
-//            case 2 -> asciToStringConverter(randomNumberInRange(40, 42)); // ()*
-//            case 3 -> asciToStringConverter(randomNumberInRange(64, 90)); // @A -Z
-//            case 4 -> asciToStringConverter(randomNumberInRange(97, 122)); // a- z
-//            case 5 -> asciToStringConverter(47); // /
-//    default -> asciToStringConverter(94); //^
-
     EXCLAMATION_MARK(33, "!"),
     HASHTAG_MARK(35, "#"),
     AMPERSAND_MARK(38, "&"),

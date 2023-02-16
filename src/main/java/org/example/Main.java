@@ -15,6 +15,11 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+
+        Token token = new Token(UserInputProvider.getScannerInput());
+        System.out.printf("Token value is %s%n", token.getValue());
+
         Scanner scanner = new Scanner(System.in);
 
         logger.log(Level.INFO, "Please provide expected amount of characters for the token.");
