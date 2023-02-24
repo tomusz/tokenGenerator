@@ -1,5 +1,6 @@
 package org.tokenGenerator;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInputProvider {
@@ -9,7 +10,7 @@ public class UserInputProvider {
         System.out.println(
                 """
                         Please provide token length as arithmetic number.
-                        Correct values are 5, 10 or 15 characters. Type 5 for 5 etc.""");
+                        Correct values are\s""" + Arrays.toString(Token.getPossibleTokenLength()) + " characters.");
         return scanner.nextLine();
     }
 }

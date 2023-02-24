@@ -11,8 +11,10 @@ public class TokenValidation {
             Integer.parseInt(userInput);
             return true;
         } catch (NumberFormatException nfe) {
-            throw new NumberFormatException(String.format(ERROR_MESSAGE, Arrays.toString(requiredRange)));
+            System.out.printf((ERROR_MESSAGE) + "%n", Arrays.toString(requiredRange));
+            System.out.println(Token.getTokenValueMessage.apply(new Token(UserInputProvider.getScannerInput())));
         }
+        return false;
     }
 
     public static boolean isValueInRequiredRange(int[] requiredRange, int userInput) {

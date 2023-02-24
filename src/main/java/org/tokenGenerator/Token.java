@@ -1,12 +1,14 @@
 package org.tokenGenerator;
 
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Function;
 
 public class Token {
 
     private final static int FIRST_CHAR_NUMBER = 33;
     private final static int LAST_CHAR_NUMBER = 122;
-    private final static int[] possibleTokenLength = {5, 10, 15};
+    private static final int[] possibleTokenLength = {5, 10, 15};
+    private final static String TOKEN_VALUE_MESSAGE_TEMPLATE = "Token value is %s";
     private String value;
 
     public Token(String length) {
@@ -26,6 +28,10 @@ public class Token {
         return token.toString();
     }
 
+    public static int[] getPossibleTokenLength() {
+        return possibleTokenLength;
+    }
+
     private static String asciiToStringConverter(int asciiNumber) {
         return String.valueOf((char) asciiNumber);
     }
@@ -33,4 +39,6 @@ public class Token {
     public String getValue() {
         return value;
     }
+
+    public static Function<Token, String> getTokenValueMessage = token -> String.format(TOKEN_VALUE_MESSAGE_TEMPLATE,token.getValue());
 }
